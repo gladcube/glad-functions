@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "prelude-ls": "^1.1.2"
+  },
+  "devDependencies": {
+    "colors": "^1.1.2"
   }
 }

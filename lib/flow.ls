@@ -21,14 +21,14 @@ module.exports = new class Flow
     unless x => f x
   else: else_
   [case_, otherwise_] = do ->
-    _ = {}
+    $ = {}
     [
       (f, g, x)-->
-        | x is _ => _
-        | f x => g x |> return_ _
+        | x is $ => $
+        | f x => g x |> return_ $
         | _ => x
     , (f, x)-->
-        | x isnt _ => f x
+        | x isnt $ => f x
     ]
   case_: case_
   case: case_
