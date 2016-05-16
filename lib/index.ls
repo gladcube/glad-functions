@@ -1,12 +1,18 @@
+require! \./applicative.ls
 require! \./control.ls
-require! \./func.ls
 require! \./flow.ls
+require! \./func.ls
+require! \./obj.ls
 
 module.exports = new class GladFunctions
+  Applicative: applicative
   Control: control
-  Func: func
   Flow: flow
+  Func: func
+  Obj: obj
+|> (<<<< obj)
 |> (<<<< control)
-|> (<<<< func)
 |> (<<<< flow)
+|> (<<<< applicative)
+|> (<<<< func)
 

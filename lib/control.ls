@@ -1,16 +1,10 @@
 module.exports = new class Control
-  when_: when_ = (f, g, x)-->
-    if f x => g x
-  when: when_
-  unless_: unless_ = (f, g, x)-->
-    unless f x => g x
+  if_: if_ = (x, f)-->
+    if x => do f
+  if: if_
+  unless_: unless_ = (x, f)-->
+    unless x => do f
   unless: unless_
-  then_: then_ = (f, x)-->
-    if x => f x
-  then: then_
-  else_: else_ = (f, x)-->
-    unless x => f x
-  else: else_
   try_: try_ = (f, g, h)->
     try
       f!
@@ -31,4 +25,3 @@ module.exports = new class Control
     finally
       g!
   finally: finally_
-
