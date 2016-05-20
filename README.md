@@ -2,6 +2,7 @@
 
 ### Applicative
 #### return(return_)
+a -> (a -> b)
 ```livescript
 return_ \something |> (do) # => 'something'
 ```
@@ -14,6 +15,7 @@ something
 
 ### Control
 #### if(if_), unless(unless_)
+Boolean -> (a -> b) -> b?
 ```livescript
 some_value = 200
 if_ (some_value > 100), -> console.log \Yeah! # => (Output) 'Yeah!'
@@ -31,6 +33,7 @@ do_something `finally_` -> console.log "Finally do other things." # => (Output) 
 
 ### Flow
 #### act
+(a -> b) -> a
 ```livescript
 [1 to 5]
 |> filter (% 2) >> (is 0)
@@ -42,6 +45,7 @@ do_something `finally_` -> console.log "Finally do other things." # => (Output) 
 ```
 
 #### if(if_), unless(unless_)
+Boolean -> (a -> b) -> b?
 ```livescript
 SOME_CONSTANT = 200
 \Yeah!
@@ -55,6 +59,7 @@ SOME_CONSTANT = 200
 ```
 
 #### when(when_), except
+(a -> Boolean) -> (a -> b) -> b?
 ```livescript
 [1 to 5]
 |> when_ (all ( < 6)), ( .length) >> console~log # => (Output) 5
@@ -77,6 +82,7 @@ people
 ```
 
 #### then(then_), else(else_)
+(a -> b) -> Boolean -> b?
 ```livesctipt
 [1 to 5]
 |> any ( < 5)
@@ -92,6 +98,8 @@ people
 ```
 
 #### case(case_), otherwise(otherwise_)
+(a -> Boolean) -> (a -> b) -> (a OR c)
+c is special unique object
 ```livesctipt
 [1 to 3]
 |> case_ (all (< 3)), -> console.log \Yeah! # => (Do Nothing)
@@ -101,7 +109,8 @@ people
 ```
 
 #### case$
-(act . when)
+(a -> Boolean) -> (a -> b) -> a
+Equivalent to ```(act . when)```
 ```livescript
 [1 to 3]
 |> case$ (all (< 3)), -> console.log \Yeah! # => (Do Nothing)
@@ -110,6 +119,7 @@ people
 ```
 
 #### let(let_)
+(String, b, c, ...) -> a -> a
 ```livescript
 obj =
   hello: (str)-> console.log "Hello, #str!"
@@ -121,6 +131,7 @@ obj
 
 ### Func
 #### $
+(a -> b) -> a -> b
 ```livescript
 ( + 5) `$` 4 # => 9
 ```
@@ -136,11 +147,13 @@ obj
 
 ### Obj
 #### let(let_)
+(a, String, b, c, ...) -> d
 ```livescript
 let_ console, \log, \Yeah! # => (Output) 'Yeah!'
 ```
 
 #### get
+(String) -> a -> b
 ```livescript
 human = name: \tarou
 human |> get \name # => 'tarou'
@@ -152,11 +165,25 @@ human = name: \tarou, age: 25 weight: 60
 ```
 
 #### set
+(String) -> a -> b -> a
 ```livescript
 human = {}
 human
 |> act set \name, \tarou
 |> act set \age, 25 # => { name: 'tarou', age: 25 }
+```
+
+### Option
+#### may
+(a -> b) -> a? -> b?
+```livescript
+people =
+  * name: \tarou
+  * name: \hanako
+save = (person)-> # Save into database
+people
+|> find (get \name) >> (is \jirou)
+|> may save # => (Do Nothing)
 ```
 
 ## Other
