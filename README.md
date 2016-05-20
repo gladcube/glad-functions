@@ -98,7 +98,7 @@ people
 ```
 
 #### case(case_), otherwise(otherwise_)
-(a -> Boolean) -> (a -> b) -> (a OR c)
+(a -> Boolean) -> (a -> b) -> (a OR c)  
 c is special unique object
 ```livesctipt
 [1 to 3]
@@ -109,7 +109,7 @@ c is special unique object
 ```
 
 #### case$
-(a -> Boolean) -> (a -> b) -> a
+(a -> Boolean) -> (a -> b) -> a  
 Equivalent to ```(act . when)```
 ```livescript
 [1 to 3]
@@ -175,7 +175,8 @@ human
 
 ### Option
 #### may
-(a -> b) -> a? -> b?
+(a -> b) -> a? -> b?  
+Equivalent to ```when (?)```  
 ```livescript
 people =
   * name: \tarou
@@ -190,6 +191,7 @@ people
 ### Module Exports Priority
 1. Func
 2. Applicative
-3. Flow
-4. Control
-5. Obj
+3. Option
+4. Flow
+5. Control
+6. Obj
