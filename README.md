@@ -31,6 +31,11 @@ do_something `catch_` ( .message |> console~log) # => (Output) 'Some Error!'
 do_something `finally_` -> console.log "Finally do other things." # => (Output) 'Finally do other things.' (Error)
 ```
 
+#### throw(throw_)
+```livescript
+throw_ new Error "Some Error!" # => (Error) 'Some Error!'
+```
+
 ### Flow
 #### act
 (a -> b) -> a

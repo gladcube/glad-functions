@@ -47,4 +47,9 @@ module.exports = new class ControlAssertion
         throws ->
           (->) `finally_` -> throw new Error
   finally: finally_
+  throw_: throw_ =
+    * (throw_)->
+        throws ->
+          throw_ new Error
+  throw: throw_
 

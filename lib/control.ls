@@ -25,3 +25,5 @@ module.exports = new class Control
     finally
       g!
   finally: finally_
+  throw_: throw_ = (x)-> throw x
+  throw: throw_
