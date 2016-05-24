@@ -6,3 +6,6 @@ module.exports = new class Obj
     x.(k)
   set: set = (k, v, x)-->
     x.(k) = v
+  delete_: delete_ = (k, x)-->
+    delete x.(k)
+  delete: delete_

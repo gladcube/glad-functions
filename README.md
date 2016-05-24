@@ -178,6 +178,13 @@ human
 |> act set \age, 25 # => { name: 'tarou', age: 25 }
 ```
 
+#### delete(delete_)
+(String) -> a -> b
+```livescript
+(foo: \bar)
+|> act delete_ \foo # => {}
+```
+
 ### Option
 #### may
 (a -> b) -> a? -> b?  

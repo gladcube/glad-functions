@@ -10,13 +10,13 @@ do main = ->
     (require "#__dirname/../lib/#file")
     |> obj-to-pairs
     |> each ([key, func])->
-      assert "#{module_name file}.#key", (require "#__dirname/assertions/#file").(key), func
+      run "#{module_name file}.#key", (require "#__dirname/assertions/#file").(key), func
 
-assert = (name, assertions, func)->
+run = (name, assertions, func)->
   | not assertions? =>
     console.warn "[Warning] #name does not have assertions.".yellow
   | assertions |> is-type \Array |> (not) =>
-    assert name, [assertions], func
+    run name, [assertions], func
   | _ =>
     (->
       assertions
