@@ -1,6 +1,6 @@
 {
   "name": "glad-functions",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,8 @@
   },
   "devDependencies": {
     "colors": "^1.1.2"
+  },
+  "browserify": {
+    "transform": ["browserify-livescript"]
   }
 }
