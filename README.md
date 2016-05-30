@@ -38,7 +38,7 @@ throw_ new Error "Some Error!" # => (Error) 'Some Error!'
 
 ### Flow
 #### act
-(a -> b) -> a
+(a -> b) -> a -> a
 ```livescript
 [1 to 5]
 |> filter (% 2) >> (is 0)
