@@ -150,6 +150,17 @@ obj
   console.log \Yeah! # => (Output) 'Yeah!'
 ```
 
+#### lazy
+((a, b, c, ...) -> d) -> e -> d
+```livescript
+lazy (+), 5, 5 # => [Function]
+lazy (+), 5, 5 |> (do) # => 10
+```
+
+```livescript
+set-timeout (lazy console~log, \Yeah!), 3000_ms # => (Output in 3 seconds) 'Yeah!'
+```
+
 ### Obj
 #### let(let_)
 (a, String, b, c, ...) -> d
