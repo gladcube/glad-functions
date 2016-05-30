@@ -178,6 +178,12 @@ set-timeout (lazy console~log, \Yeah!), 3000_ms # => (Output in 3 seconds) 'Yeah
 |> (at 0) >> (at 1) # => 'r'
 ```
 
+#### length
+[a] -> Number
+```livescript
+[1 to 3] |> length # => 3
+```
+
 ### Obj
 #### let(let_)
 (a, String, b, c, ...) -> d

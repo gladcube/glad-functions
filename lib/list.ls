@@ -1,3 +1,4 @@
+{get} = require \./obj.ls
 {may} = require \./option.ls
 
 module.exports = new class List
@@ -5,3 +6,4 @@ module.exports = new class List
     find f, xs |> may f
   filter_map: filter_map = (f, xs)-->
     filter f, xs |> map f
+  length: length = get \length
