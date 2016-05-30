@@ -50,7 +50,7 @@ throw_ new Error "Some Error!" # => (Error) 'Some Error!'
 ```
 
 #### if(if_), unless(unless_)
-Boolean -> (a -> b) -> b?
+Boolean -> (a -> b) -> (a OR b)
 ```livescript
 SOME_CONSTANT = 200
 \Yeah!
@@ -64,7 +64,7 @@ SOME_CONSTANT = 200
 ```
 
 #### when(when_), except
-(a -> Boolean) -> (a -> b) -> b?
+(a -> Boolean) -> (a -> b) -> (a OR b)
 ```livescript
 [1 to 5]
 |> when_ (all ( < 6)), ( .length) >> console~log # => (Output) 5
@@ -87,7 +87,7 @@ people
 ```
 
 #### then(then_), else(else_)
-(a -> b) -> Boolean -> b?
+(a -> b) -> Boolean -> (a OR b)
 ```livesctipt
 [1 to 5]
 |> any ( < 5)

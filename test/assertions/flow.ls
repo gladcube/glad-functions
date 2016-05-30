@@ -15,7 +15,7 @@ module.exports = new class FlowAssertion
     * (if_)->
         \foo
         |> if_ false, ( + \bar)
-        |> equal _, undefined
+        |> equal _, \foo
     * (if_)->
         does-not-throw ->
           \foo |> if_ false, -> throw new Error
@@ -28,7 +28,7 @@ module.exports = new class FlowAssertion
     * (unless_)->
         \foo
         |> unless_ true, ( + \bar)
-        |> equal _, undefined
+        |> equal _, \foo
     * (unless_)->
         does-not-throw ->
           \foo |> unless_ true, -> throw new Error
@@ -41,7 +41,7 @@ module.exports = new class FlowAssertion
     * (when_)->
         200
         |> when_ ( < 100), ( * 2)
-        |> equal _, undefined
+        |> equal _, 200
     * (when_)->
         does-not-throw ->
           200
@@ -51,7 +51,7 @@ module.exports = new class FlowAssertion
     * (except)->
         200
         |> except ( > 100), ( * 2)
-        |> equal _, undefined
+        |> equal _, 200
     * (except)->
         200
         |> except ( < 100), ( * 2)
@@ -68,7 +68,7 @@ module.exports = new class FlowAssertion
     * (then_)->
         false
         |> then_ -> \foo
-        |> equal _, undefined
+        |> equal _, false
     * (then_)->
         does-not-throw ->
           false
@@ -78,7 +78,7 @@ module.exports = new class FlowAssertion
     * (else_)->
         true
         |> else_ -> \foo
-        |> equal _, undefined
+        |> equal _, true
     * (else_)->
         false
         |> else_ -> \foo
