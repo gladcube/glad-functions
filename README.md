@@ -161,6 +161,23 @@ lazy (+), 5, 5 |> (do) # => 10
 set-timeout (lazy console~log, \Yeah!), 3000_ms # => (Output in 3 seconds) 'Yeah!'
 ```
 
+### List
+#### find_map
+(a -> b) -> [a] -> b
+```livescript
+<[foo bar]>
+|> find_map match_ /a(r)/
+|> at 1 # => 'r'
+```
+
+#### filter_map
+(a -> b) -> [a] -> [b]
+```livescript
+<[foo bar]>
+|> filter_map match_ /a(r)/
+|> (at 0) >> (at 1) # => 'r'
+```
+
 ### Obj
 #### let(let_)
 (a, String, b, c, ...) -> d
@@ -210,6 +227,13 @@ people
 |> may save # => (Do Nothing)
 ```
 
+### Str
+#### match(match_)
+(String OR RegExp) -> String -> [String]?
+```livescript
+\foo |> match_ /oo/ |> at 0 # => 'oo'
+```
+
 ## Other
 ### Module Exports Priority
 1. Func
@@ -217,4 +241,6 @@ people
 3. Option
 4. Flow
 5. Control
-6. Obj
+6. List
+7. Str
+8. Obj
