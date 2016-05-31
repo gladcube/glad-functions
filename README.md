@@ -161,6 +161,18 @@ lazy (+), 5, 5 |> (do) # => 10
 set-timeout (lazy console~log, \Yeah!), 3000_ms # => (Output in 3 seconds) 'Yeah!'
 ```
 
+#### dist
+a -> [(a -> b), (a -> c), ...] -> [b, c, ...]
+```livescript
+dist 5, [(+ 4), (* 4)] # => [ 9, 20 ]
+```
+
+```livescript
+[1 to 5]
+|> dist _, [length >> (`div` 2), reverse]
+|> apply replicate # => [ [ 5, 4, 3, 2, 1 ], [ 5, 4, 3, 2, 1 ] ]
+```
+
 ### List
 #### find_map
 (a -> b) -> [a] -> b
