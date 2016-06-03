@@ -1,4 +1,4 @@
-require("LiveScript")
+require("livescript")
 import$(global, require("prelude-ls"))
 module.exports = require("./lib/index.ls")
 
