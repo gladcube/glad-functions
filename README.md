@@ -162,6 +162,58 @@ dist 5, [(+ 4), (* 4)] # => [ 9, 20 ]
 |> apply replicate # => [ [ 5, 4, 3, 2, 1 ], [ 5, 4, 3, 2, 1 ] ]
 ```
 
+#### arg
+Number -> (a, b, c, ...) -> (a OR b OR c OR ...)
+```livescript
+(arg 1) 1, 2, 3 # => 2
+```
+
+```livescript
+express!.get \./, (arg 1) >> let_ \render, \index # second argument of callback is Response
+```
+
+#### args
+(a, b, c, ...) -> [a, b, c, ...]
+```livescript
+args 1, 2, 3 # => [ 1, 2, 3 ]
+```
+
+```livescript
+express!.get \./, args >> (++ \foo) >> cb # useful when add argument
+```
+
+#### withl
+(a -> b) -> [b, a]
+```livescript
+5 |> withl ( + 10) # => [ 15, 5 ]
+```
+
+```livescript
+[10 to 15]
+|> withl elem-index 14
+|> apply split-at # => [ [ 10, 11, 12, 13 ], [ 14, 15 ] ]
+```
+
+#### withr
+(a -> b) -> [a, b]
+```livescript
+5 |> withr ( + 10) # => [ 5, 15]
+```
+
+#### $_at
+Number -> (a -> b) -> [a] -> [a OR b]
+```livescript
+[1, 2, 3]
+|> $_at 2, (* 10) # => [ 1, 2, 30 ]
+```
+
+#### $_zip
+[(a -> b), (c -> d), ...] -> [a, b, ...] -> [c, d, ...]
+```livescript
+[1, 2, 3]
+|> $_zip [(* 10), (- 2), (+ 7)] # => [ 10, 0, 10 ]
+```
+
 ### List
 #### find_map
 (a -> b) -> [a] -> b
