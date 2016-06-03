@@ -122,14 +122,4 @@ module.exports = new class FlowAssertion
         does-not-throw ->
           250
           |> case$ ( > 300), -> throw new Error
-  let_: let_ =
-    * (let_)->
-        throws ->
-          (foo: (-> throw new Error))
-          |> let_ \foo
-    * (let_)->
-        (obj = foo: (->))
-        |> let_ \foo
-        |> equal _, obj
-  let: let_
 

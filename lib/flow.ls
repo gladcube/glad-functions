@@ -41,7 +41,3 @@ module.exports = new class Flow
   otherwise_: otherwise_
   otherwise: otherwise_
   case$: case$ = act . when_
-  let_: let_ = (k, ...a)->
-    (x)->
-      x.(k).apply x, a |> return_ x
-  let: let_

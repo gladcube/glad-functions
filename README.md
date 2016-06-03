@@ -123,17 +123,6 @@ Equivalent to ```(act . when)```
 |> case$ (all (< 5)), -> console.log \Yeah! # => (Output) 'Yeah!'
 ```
 
-#### let(let_)
-(String, b, c, ...) -> a -> a
-```livescript
-obj =
-  hello: (str)-> console.log "Hello, #str!"
-  good_bye: (str)-> console.log "Good bye, #str!"
-obj
-|> let_ \hello, \tarou
-|> let_ \good_bye, \tarou
-```
-
 ### Func
 #### $
 (a -> b) -> a -> b
