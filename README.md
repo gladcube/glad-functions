@@ -13,6 +13,25 @@ something
 |> return_ \other_thing # => 'other_shing'
 ```
 
+### Combinator
+#### B
+Alias: ```(<<)```
+
+#### C
+Alias: ```flip```
+
+#### I
+Alias: ```id```
+
+#### K
+Alias: ```Applicative.return_```
+
+#### Q
+Alias: ```(>>)```
+
+#### Y
+Alias: ```fix```
+
 ### Control
 #### if(if_), unless(unless_)
 Boolean -> (a -> b) -> b?
@@ -137,6 +156,19 @@ Equivalent to ```(act . when)```
 |> all $ _, 105
 |> then_ ->
   console.log \Yeah! # => (Output) 'Yeah!'
+```
+
+#### $$
+[(a -> b), (a -> c), ...] -> a -> [b, c, ...]
+Equivalent to ```flip dist```
+```livescript
+5 |> $$ [(+ 4), (* 4)] # => [ 9, 20 ]
+```
+
+```livescript
+[1 to 5]
+|> $$ [length >> (`div` 2), reverse]
+|> apply replicate # => [ [ 5, 4, 3, 2, 1 ], [ 5, 4, 3, 2, 1 ] ]
 ```
 
 #### lazy
@@ -296,10 +328,11 @@ people
 ## Other
 ### Module Exports Priority
 1. Func
-2. Applicative
-3. Option
-4. Flow
-5. Control
-6. List
-7. Str
-8. Obj
+2. Combinator
+3. Applicative
+4. Option
+5. Flow
+6. Control
+7. List
+8. Str
+9. Obj

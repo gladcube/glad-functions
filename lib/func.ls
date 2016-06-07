@@ -1,10 +1,13 @@
+{C} = require \./combinator.ls
+
 module.exports = new class Func
   $: $ = (f, x)-->
     f x
+  $$: $$ = (fs, x)-->
+    map (x |>), fs
   lazy: lazy = (x, ...y)->
     -> apply x, y
-  dist: dist = (x, fs)-->
-    map (x |>), fs
+  dist: dist = C $$
   arg: arg = (n)-> -> &.(n)
   args: args = -> & |> map id
   withl: withl = (f, x)-->
