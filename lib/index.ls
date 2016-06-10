@@ -1,4 +1,5 @@
 require! \./applicative.ls
+require! \./async.ls
 require! \./combinator.ls
 require! \./control.ls
 require! \./flow.ls
@@ -10,6 +11,7 @@ require! \./str.ls
 
 module.exports = new class GladFunctions
   Applicative: applicative
+  Async: async
   Combinator: combinator
   Control: control
   Flow: flow
@@ -22,6 +24,7 @@ module.exports = new class GladFunctions
 |> (<<<< str)
 |> (<<<< list)
 |> (<<<< control)
+|> (<<<< async)
 |> (<<<< flow)
 |> (<<<< option)
 |> (<<<< applicative)
