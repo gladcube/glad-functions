@@ -29,6 +29,15 @@ module.exports = new class Func
     args >> ($_zip fs) >> apply g
   $_when: $_when = (f, g, xs)-->
     map (when_ f, g), xs
+  $_pairs: $_pairs = (f, o)-->
+    o
+    |> obj-to-pairs
+    |> f
+    |> pairs-to-obj
+  $_key: $_key = (k, f, o)-->
+    $_pairs (
+      $_when (at 0) >> (is k), ($_at 1, f)
+    ), o
   lazy: lazy = (x, ...y)->
     -> apply x, y
   dist: dist = C $$
