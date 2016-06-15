@@ -17,7 +17,12 @@ module.exports = new class GladFunctions
   Flow: flow
   Func: func
   List: list
-  Obj: obj
+  Obj:
+    # Avoid confliction against prelude-ls
+    obj.merge (
+      (require \prelude-ls)
+      |> obj.get \Obj
+    ), obj
   Option: option
   Str: str
 |> (<<<< obj)
