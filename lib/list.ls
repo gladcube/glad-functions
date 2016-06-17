@@ -7,3 +7,8 @@ module.exports = new class List
   filter_map: filter_map = (f, xs)-->
     filter f, xs |> map f
   length: length = get \length
+  pick: pick = (ns, xs)-->
+    map (xs |>), (map at, ns)
+  list: list = -> & |> map id
+  range: range = (x, y)-->
+    [x til y]
