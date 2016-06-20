@@ -1,6 +1,6 @@
 {length: _length} = require \../../lib/list.ls
 {match_} = require \../../lib/str.ls
-{equal} = require \assert
+{equal, deep-equal} = require \assert
 
 module.exports = new class FlowAssertion
   find_map: find_map =
@@ -26,3 +26,9 @@ module.exports = new class FlowAssertion
         |> equal _, 0
   length: length = (length)->
     [1 to 3] |> length |> equal _, 3
+  pick: pick = (pick)->
+    [1 to 40] |> pick [4, 23, 13, 5, 1] |> deep-equal _, [ 5, 24, 14, 6, 2 ]
+  list: list = (list)->
+    list 1, 2, 3, 4 |> deep-equal _, [1, 2, 3, 4]
+  range: range = (range)->
+    range 4, 100 |> deep-equal _, [4 til 100]

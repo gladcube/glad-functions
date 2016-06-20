@@ -32,6 +32,10 @@ Alias: ```(>>)```
 #### Y
 Alias: ```fix```
 
+### Async
+#### before
+#### after
+
 ### Control
 #### if(if_), unless(unless_)
 Boolean -> (a -> b) -> b?
@@ -246,6 +250,76 @@ Number -> (a -> b) -> [a] -> [a OR b]
 |> $_zip [(* 10), (- 2), (+ 7)] # => [ 10, 0, 10 ]
 ```
 
+#### $_head
+a -> b -> [a] -> [b]
+```livescript
+[1, 2, 3]
+|> $_head (* 10) #=> [10, 2, 3]
+```
+
+#### $_last
+a -> b -> [a] -> [b]
+```livescript
+[1, 2, 3]
+|> $_last (* 10) #=> [1, 2, 30]
+```
+
+#### $_arg
+Number -> (a -> b) -> (c -> d) -> (e -> f)
+```livescript
+(-)
+|> $_arg 1, (+ 5), _
+|> apply _, [10, 20] #=> -15
+```
+
+#### $_head_arg
+(a -> b) -> (c -> d) -> (e -> f)
+```livescript
+(-)
+|> $_head_arg (+ 100), _
+|> apply _, [10, 20] #=> 90
+```
+
+#### $_last_arg
+(a -> b) -> (c -> d) -> (e -> f)
+```livescript
+(-)
+|> $_last_arg (+ 100), _
+|> apply _, [10, 20] #=> 110
+```
+
+#### $_args
+(a -> b) -> (c -> d) -> (e -> f)
+```livescript
+(-)
+|> $_args (+ 5), _
+|> apply _, [10, 20] #=> -10
+```
+
+#### $$_args
+[(a -> b), ...] -> (c -> d) -> (e -> f)
+```livescript
+(*)
+|> $$_args [(+ 100), (+ 5)], _
+|> apply _, [10, 20] #=> 2750
+```
+
+#### $$_when
+a -> Function -> [a] -> [a]
+```livescript
+[10, 20, 30]
+|> $_when (> 20), (* 30) #=> [10, 20, 900]
+```
+
+#### need
+Number -> (a -> b) -> c ... -> d
+```livescript
+(+)
+|> need 2
+|> apply _, [10]
+|> apply _, [4] #=> 14
+```
+
 ### List
 #### find_map
 (a -> b) -> [a] -> b
@@ -267,6 +341,24 @@ Number -> (a -> b) -> [a] -> [a OR b]
 [a] -> Number
 ```livescript
 [1 to 3] |> length # => 3
+```
+
+#### pick
+[Number] -> [a] -> [a]
+``` livesctipt
+[1 to 40] |> pick [4, 23, 13, 5, 1]  #=> [ 5, 24, 14, 6, 2 ]
+```
+
+#### list
+(a, b, c, ...) -> [a, b, c, ...]
+``` livescript
+list 1, 2, 3, 4 #=> [1, 2, 3, 4]
+```
+
+#### range
+a -> b -> [a,...b]
+```livescript
+range 4, 100 #=> [4, 5, ... 100]
 ```
 
 ### Obj
@@ -301,10 +393,38 @@ human
 (String) -> a -> b
 ```livescript
 (foo: \bar)
-|> act delete_ \foo # => {}
+|> act delete_ \foo #=> {}
+```
+
+#### set_$
+String -> (a -> b) -> c -> d
+```livescript
+{ foo: 4, bar: 5}
+|> act set_$ \bar, (+ 8) #=> { foo: 4, bar: 13 }
+```
+
+#### new_
+a -> b ... -> c
+```livescript
+(class A
+  (num) ->
+    @x = num
+  property: 1
+  method: (y) ->
+    @x + @property + y)
+|> new_ _, 100
+|> _let _, \method, 32 #=> 133
+
+```
+
+#### call
+String -> a ... -> b -> c
+```livescript
+call \plus_w, 3, 8 ,(plus_w: ( + ) >> ( * 2 )) # => 22
 ```
 
 ### Option
+
 #### may
 (a -> b) -> a? -> b?  
 Equivalent to ```when (?)```  
