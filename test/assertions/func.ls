@@ -68,7 +68,7 @@ module.exports = new class FuncAssertion
     |> $_when (> 20), (* 30)
     |> deep-equal _, [ 10, 20, 900 ]
   $_pairs: $_pairs = ($_pairs)->
-    { ks : 10 , ms : 2}
+    { ks : 10 , ms : 2 }
     |> $_pairs  map map (+ \5)
     |> deep-equal _, { ks5: '105', ms5: '25' }
   $_key: $_key = ($_key)->

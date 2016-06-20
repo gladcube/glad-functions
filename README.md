@@ -251,14 +251,14 @@ Number -> (a -> b) -> [a] -> [a OR b]
 ```
 
 #### $_head
-a -> b -> [a] -> [b]
+a -> [b] -> [c]
 ```livescript
 [1, 2, 3]
 |> $_head (* 10) #=> [10, 2, 3]
 ```
 
 #### $_last
-a -> b -> [a] -> [b]
+a -> [b] -> [c]
 ```livescript
 [1, 2, 3]
 |> $_last (* 10) #=> [1, 2, 30]
@@ -304,12 +304,27 @@ Number -> (a -> b) -> (c -> d) -> (e -> f)
 |> apply _, [10, 20] #=> 2750
 ```
 
-#### $$_when
+#### $_when
 a -> Function -> [a] -> [a]
 ```livescript
 [10, 20, 30]
 |> $_when (> 20), (* 30) #=> [10, 20, 900]
 ```
+
+#### $_pairs
+(a -> b) -> c -> d
+```livescript
+{ ks : 10 , ms : 2 }
+|> $_pairs  map map (+ \5) #=> { ks5: '105', ms5: '25' }
+```
+
+#### $_key
+String -> (a -> b) -> c -> d
+```livescript
+{ ks : 10 , ms : 2}
+|> $_key \ms  (+ 5) #=> { ks: 10, ms: 7 }
+```
+
 
 #### need
 Number -> (a -> b) -> c ... -> d
