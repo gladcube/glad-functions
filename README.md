@@ -34,8 +34,32 @@ Alias: ```fix```
 
 ### Async
 #### before
-#### after
+Extend the function with the other function.
+When the "parent" is called. the "child" will be called before the "parent".
+Both of the functions should accept same type and number of arguments.(However, the "child" function should accept "next" as the last argument adding the common arguments)
 
+```livescript
+  hello_then = (name, cb)->
+    cb "Hello_" + name
+  hello_then_alpha = before hello_then, (name, cb, next)->
+    next \lorem_ + name, cb
+  hello_then_alpha \foo, -> it + \_test
+  |> console~log #=>(Output) Hello_lorem_foo_test
+
+```
+#### after
+Extend the function with the other function.
+When the "parent" is called. the "child" will be called after the "parent".
+Both of the functions should accept same type and number of arguments.
+
+```livescript
+  hello_then = (name, cb)->
+    cb "Hello_" + name
+  hello_then_beta = after hello_then, (name, cb)->
+    cb \lorem_ + name
+  hello_then_beta \foo, -> it + \_test
+  |> console~log #=>(Output) lorem_Hello_foo_test
+```
 ### Control
 #### if(if_), unless(unless_)
 Boolean -> (a -> b) -> b?

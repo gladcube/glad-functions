@@ -3,16 +3,17 @@
 module.exports = new class AsyncAssertion
   before: before =
     (before)->
-        _module =(
-          hello_then:(name)->
-            "Hello #name!"
-        )
-        |> before \hello_then, (name, next)->
-          next \lorem + name
-        name <- _module.hello_then \foo
-        equal(name, "Hello loremfoo!")
+      hello_then = (name, cb)->
+        cb "Hello_" + name
+      hello_then_alpha = before hello_then, (name, cb, next)->
+        next \lorem_ + name, cb
+      hello_then_alpha \foo, -> it + \_test
+      |> equal(_, "Hello_lorem_foo_test")
+  after: after =
     (after)->
-      (-)
-      |> after (*), _
-      |> apply _, [4,5]
-      |> console~log
+      hello_then = (name, cb)->
+        cb "Hello_" + name
+      hello_then_beta = after hello_then, (name, cb)->
+        cb \lorem_ + name
+      hello_then_beta \foo, -> it + \_test
+      |> equal(_, "lorem_Hello_foo_test")
