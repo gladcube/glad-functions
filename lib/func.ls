@@ -29,6 +29,9 @@ module.exports = new class Func
     args >> ($_zip fs) >> apply g
   $_when: $_when = (f, g, xs)-->
     map (when_ f, g), xs
+  $_find: $_find = (f, g, xs)-->
+    $_at (find-index f, xs), g, xs
+  $_filter: $_when
   $_pairs: $_pairs = (f, o)-->
     o
     |> obj-to-pairs
