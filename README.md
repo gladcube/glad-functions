@@ -346,7 +346,10 @@ Function -> Function -> [a] -> [a]
 #### $_filter
 Function -> Function -> [a] -> [a]
 
-Equivalent to $_when
+Equivalent to
+`
+$_when
+`
 
 ```livescript
 [10, 20, 30]
