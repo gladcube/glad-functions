@@ -21,4 +21,3 @@ module.exports = new class Obj
     |> map obj-to-pairs
     |> concat
     |> pairs-to-obj
-
