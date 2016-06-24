@@ -329,10 +329,28 @@ $$_args [(+ 100), (+ 5)], (*)
 ```
 
 #### $_when
-a -> Function -> [a] -> [a]
+Function -> Function -> [a] -> [a]
 ```livescript
 [10, 20, 30]
 |> $_when (> 20), (* 30) # => [10, 20, 900]
+```
+
+#### $_find
+Function -> Function -> [a] -> [a]
+```livescript
+<[foo bar foobar bar foo lorem ]>
+|> $_find (is \bar), ( + \barbar)
+  # =>  [ 'foo', 'barbarbar', 'foobar', 'bar', 'foo', 'lorem' ]
+```
+
+#### $_filter
+Function -> Function -> [a] -> [a]
+
+Equivalent to $_when
+
+```livescript
+[10, 20, 30]
+|> $_filter (> 10), (* 30) # =>  [ 10, 600, 900 ]
 ```
 
 #### $_pairs

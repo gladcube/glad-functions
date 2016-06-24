@@ -77,6 +77,15 @@ module.exports = new class FuncAssertion
       { ks : 10, ms : 2 }
       |> $_key \ms  (+ 5)
       |> deep-equal _, { ks: 10, ms: 7 }
+  $_find: $_find =
+    ($_find)->
+      <[foo bar foobar bar foo lorem ]>
+      |> $_find (is \bar), ( + \barbar)
+      |> deep-equal _, [ 'foo', 'barbarbar', 'foobar', 'bar', 'foo', 'lorem' ]
+  $_filter: $_filter = ($_filter)->
+    [10, 20, 30]
+    |> $_filter (> 10), (* 30)
+    |> deep-equal _, [ 10, 600, 900 ]
   need: need =
     (need)->
       a = (x, y)--> x + y + 5
