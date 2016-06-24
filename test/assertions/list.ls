@@ -1,5 +1,6 @@
 {length: _length} = require \../../lib/list.ls
 {match_} = require \../../lib/str.ls
+{args} = require \../../lib/func.ls
 {equal, deep-equal} = require \assert
 
 module.exports = new class FlowAssertion
@@ -26,8 +27,14 @@ module.exports = new class FlowAssertion
         |> equal _, 0
   length: length = (length)->
     [1 to 3] |> length |> equal _, 3
-  pick: pick = (pick)->
-    [1 to 40] |> pick [4, 23, 13, 5, 1] |> deep-equal _, [ 5, 24, 14, 6, 2 ]
+  pick: pick =
+    (pick)->
+      [1 to 40] |> pick [4, 23, 13, 5, 1] |> deep-equal _, [ 5, 24, 14, 6, 2 ]
+    (pick)->
+      some_function = (cb)->
+        cb \err, \data, \other_data
+      some_function (args >> (pick [2, 1]) >> join " ")
+      |> equal _, "other_data data"
   list: list = (list)->
     list 1, 2, 3, 4 |> deep-equal _, [1, 2, 3, 4]
   range: range = (range)->

@@ -46,7 +46,7 @@ Both of the functions should accept the same type and numbers of arguments.(Howe
   hello_then_alpha = before hello_then, (name, cb, next)->
     next \lorem_ + name, cb
   hello_then_alpha \foo, -> it + \_test
-  |> console~log #=>(Output) Hello_lorem_foo_test
+  |> console~log # =>(Output) Hello_lorem_foo_test
 
 ```
 
@@ -59,11 +59,10 @@ Both of the functions should accept the same type and numbers of arguments.
 
 ```livescript
   hello_then = (name, cb)->
-    cb "Hello_" + name
+    cb name + "_is_a"
   hello_then_beta = after hello_then, (name, cb)->
-    cb \lorem_ + name
-  hello_then_beta \foo, -> it + \_test
-  |> console~log #=>(Output) lorem_Hello_foo_test
+    cb name + "_good"
+  hello_then_beta \foo, -> it + \_man # => "foo_is_a_good_man
 ```
 
 ### Control
@@ -284,85 +283,82 @@ Number -> (a -> b) -> [a] -> [a OR b]
 a -> [b] -> [c]
 ```livescript
 [1, 2, 3]
-|> $_head (* 10) #=> [10, 2, 3]
+|> $_head (* 10) # => [10, 2, 3]
 ```
 
 #### $_last
 a -> [b] -> [c]
 ```livescript
 [1, 2, 3]
-|> $_last (* 10) #=> [1, 2, 30]
+|> $_last (* 10) # => [1, 2, 30]
 ```
 
 #### $_arg
 Number -> (a -> b) -> (c -> d) -> (e -> f)
 ```livescript
-(-)
-|> $_arg 1, (+ 5), _
-|> apply _, [10, 20] #=> -15
+$_arg 1, (+ 5), (-)
+|> apply _, [10, 20] # => -15
 ```
 
 #### $_head_arg
 (a -> b) -> (c -> d) -> (e -> f)
 ```livescript
-(-)
-|> $_head_arg (+ 100), _
-|> apply _, [10, 20] #=> 90
+$_head_arg (+ 100), (-)
+|> apply _, [10, 20] # => 90
 ```
 
 #### $_last_arg
 (a -> b) -> (c -> d) -> (e -> f)
 ```livescript
-(-)
-|> $_last_arg (+ 100), _
-|> apply _, [10, 20] #=> 110
+$_last_arg  (+ 100), (-)
+|> apply _, [10, 20] # => -110
 ```
 
 #### $_args
 (a -> b) -> (c -> d) -> (e -> f)
 ```livescript
-(-)
-|> $_args (+ 5), _
-|> apply _, [10, 20] #=> -10
+$_args (+ 5), (*)
+|> apply _, [10, 20] # => 375
 ```
 
 #### $$_args
 [(a -> b), ...] -> (c -> d) -> (e -> f)
 ```livescript
-(*)
-|> $$_args [(+ 100), (+ 5)], _
-|> apply _, [10, 20] #=> 2750
+$$_args [(+ 100), (+ 5)], (*)
+|> apply _, [10, 20]# => 2750
 ```
 
 #### $_when
 a -> Function -> [a] -> [a]
 ```livescript
 [10, 20, 30]
-|> $_when (> 20), (* 30) #=> [10, 20, 900]
+|> $_when (> 20), (* 30) # => [10, 20, 900]
 ```
 
 #### $_pairs
-(a -> b) -> c -> d
+Function -> Object -> Object
 ```livescript
 { ks : 10 , ms : 2 }
-|> $_pairs  map map (+ \5) #=> { ks5: '105', ms5: '25' }
+|> $_pairs  map map (+ \5) # => { ks5: '105', ms5: '25' }
+
+{ ks : 10, ms : 2, mm : 5, kg : 7 }
+|> $_pairs filter head >> (in <[ks kg]>) # => { ks: 10, kg: 7 }
 ```
 
 #### $_key
 String -> (a -> b) -> c -> d
 ```livescript
 { ks : 10 , ms : 2}
-|> $_key \ms  (+ 5) #=> { ks: 10, ms: 7 }
+|> $_key \ms  (+ 5) # => { ks: 10, ms: 7 }
 ```
 
-
 #### need
-Number -> (a -> b) -> c ... -> d
+Number -> Function -> Function
 ```livescript
 (+)
 |> need 2
 |> apply _, [10]
-|> apply _, [4] #=> 14
+|> apply _, [4] # => 14
 ```
 
 ### List
@@ -391,19 +387,26 @@ Number -> (a -> b) -> c ... -> d
 #### pick
 [Number] -> [a] -> [a]
 ``` livesctipt
-[1 to 40] |> pick [4, 23, 13, 5, 1]  #=> [ 5, 24, 14, 6, 2 ]
+[1 to 40] |> pick [4, 23, 13, 5, 1]  # => [ 5, 24, 14, 6, 2 ]
+```
+
+[Number] -> [a] -> [a]
+``` livescript
+some_function = (cb)->
+  cb \err, \data, \other_data
+some_function (args >> (pick [2, 1]) >> join " ") # => "other_data data"
 ```
 
 #### list
 (a, b, c, ...) -> [a, b, c, ...]
 ``` livescript
-list 1, 2, 3, 4 #=> [1, 2, 3, 4]
+list 1, 2, 3, 4 # => [1, 2, 3, 4]
 ```
 
 #### range
-a -> b -> [a,...b]
+a -> b -> [a]
 ```livescript
-range 4, 100 #=> [4, 5, ... 100]
+range 4, 100 # => [4, 5, ... 99]
 ```
 
 ### Obj
@@ -438,14 +441,14 @@ human
 (String) -> a -> b
 ```livescript
 (foo: \bar)
-|> act delete_ \foo #=> {}
+|> act delete_ \foo # => {}
 ```
 
 #### set_$
 String -> (a -> b) -> c -> d
 ```livescript
 { foo: 4, bar: 5}
-|> act set_$ \bar, (+ 8) #=> { foo: 4, bar: 13 }
+|> act set_$ \bar, (+ 8) # => { foo: 4, bar: 13 }
 ```
 
 #### new_
@@ -458,7 +461,7 @@ a -> b ... -> c
   method: (y) ->
     @x + @property + y)
 |> new_ _, 100
-|> _let _, \method, 32 #=> 133
+|> _let _, \method, 32 # => 133
 
 ```
 

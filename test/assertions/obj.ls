@@ -20,15 +20,15 @@ module.exports = new class ObjAssertion
         |> deep-equal _, {}
   delete: delete_
   set_$: set_$ = (set_$)->
-    { foo: 4, bar: 5}
+    { foo: 4, bar: 5 }
     |> act set_$ \bar, (+ 8)
     |> deep-equal _, { foo: 4, bar: 13 }
   merge: merge = (merge)->
-    { foo: 4, bar: 5}
+    { foo: 4, bar: 5 }
     |> merge { foo: 8, lorem: 13 }
     |> deep-equal _, { foo: 8, bar: 5, lorem: 13 }
   call: call = (call)->
-    (call \plus_w, 3, 8 ,(plus_w: ( + ) >> ( * 2 ))) `equal` 22
+    (call \plus_w, 3, 8, (plus_w: ( + ) >> ( * 2 ))) `equal` 22
   new_: new_ = (new_)->
     (class A
       (num) ->

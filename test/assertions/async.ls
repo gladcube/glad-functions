@@ -12,8 +12,8 @@ module.exports = new class AsyncAssertion
   after: after =
     (after)->
       hello_then = (name, cb)->
-        cb "Hello_" + name
+        cb name + "_is_a"
       hello_then_beta = after hello_then, (name, cb)->
-        cb \lorem_ + name
-      hello_then_beta \foo, -> it + \_test
-      |> equal(_, "lorem_Hello_foo_test")
+        cb name + "_good"
+      hello_then_beta \foo, -> it + \_man
+      |> equal(_, "foo_is_a_good_man")
