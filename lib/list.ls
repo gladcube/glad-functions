@@ -12,3 +12,6 @@ module.exports = new class List
   list: list = -> & |> map id
   range: range = (x, y)-->
     [x til y]
+  none: none = (f, xs)-->
+    all (f >> (not)), xs
+
