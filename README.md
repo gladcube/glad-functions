@@ -13,25 +13,6 @@ something
 |> return_ \other_thing # => 'other_shing'
 ```
 
-### Combinator
-#### B
-Alias: ```(<<)```
-
-#### C
-Alias: ```flip```
-
-#### I
-Alias: ```id```
-
-#### K
-Alias: ```Applicative.return_```
-
-#### Q
-Alias: ```(>>)```
-
-#### Y
-Alias: ```fix```
-
 ### Async
 #### before
 (a -> b) -> (c -> d) -> ((c -> d) -> (a -> b))
@@ -64,6 +45,25 @@ Both of the functions should accept the same type and numbers of arguments.
     cb name + "_good"
   hello_then_beta \foo, -> it + \_man # => "foo_is_a_good_man
 ```
+
+### Combinator
+#### B
+Alias: ```(<<)```
+
+#### C
+Alias: ```flip```
+
+#### I
+Alias: ```id```
+
+#### K
+Alias: ```Applicative.return_```
+
+#### Q
+Alias: ```(>>)```
+
+#### Y
+Alias: ```fix```
 
 ### Control
 #### if(if_), unless(unless_)
@@ -329,10 +329,31 @@ $$_args [(+ 100), (+ 5)], (*)
 ```
 
 #### $_when
-a -> Function -> [a] -> [a]
+Function -> Function -> [a] -> [a]
 ```livescript
 [10, 20, 30]
 |> $_when (> 20), (* 30) # => [10, 20, 900]
+```
+
+#### $_find
+Function -> Function -> [a] -> [a]
+```livescript
+<[foo bar foobar bar foo lorem ]>
+|> $_find (is \bar), ( + \barbar)
+  # =>  [ 'foo', 'barbarbar', 'foobar', 'bar', 'foo', 'lorem' ]
+```
+
+#### $_filter
+Function -> Function -> [a] -> [a]
+
+Equivalent to
+`
+$_when
+`
+
+```livescript
+[10, 20, 30]
+|> $_filter (> 10), (* 30) # =>  [ 10, 600, 900 ]
 ```
 
 #### $_pairs
@@ -408,6 +429,19 @@ a -> b -> [a]
 ```livescript
 range 4, 100 # => [4, 5, ... 99]
 ```
+
+#### none
+(a → Boolean) → [a] → Boolean
+```livescript
+  <[foo bar foobar]> |> none (match_ /^foo/) # => false
+```
+```livescript
+  <[foo bar foobar]> |> none (match_ /^lorem/) # => true
+```
+```livescript
+  [] |> none (match_ /^lorem/) # => true
+```
+
 
 ### Obj
 #### let(let_)
@@ -500,7 +534,8 @@ people
 3. Applicative
 4. Option
 5. Flow
-6. Control
-7. List
-8. Str
-9. Obj
+6. Async
+7. Control
+8. List
+9. Str
+10. Obj

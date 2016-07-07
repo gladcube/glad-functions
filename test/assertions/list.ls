@@ -39,3 +39,10 @@ module.exports = new class FlowAssertion
     list 1, 2, 3, 4 |> deep-equal _, [1, 2, 3, 4]
   range: range = (range)->
     range 4, 100 |> deep-equal _, [4 til 100]
+  none: none =
+    (none)->
+      <[foo bar foobar]> |> none (match_ /^foo/) |> equal _, false
+    (none)->
+      <[foo bar foobar]> |> none (match_ /^lorem/) |> equal _, true
+    (none)->
+      [] |> none (match_ /^lorem/) |> equal _, true
