@@ -430,6 +430,19 @@ a -> b -> [a]
 range 4, 100 # => [4, 5, ... 99]
 ```
 
+#### none
+(a → Boolean) → [a] → Boolean
+```livescript
+  <[foo bar foobar]> |> none (match_ /^foo/) # => false
+```
+```livescript
+  <[foo bar foobar]> |> none (match_ /^lorem/) # => true
+```
+```livescript
+  [] |> none (match_ /^lorem/) # => true
+```
+
+
 ### Obj
 #### let(let_)
 (a, String, b, c, ...) -> d
