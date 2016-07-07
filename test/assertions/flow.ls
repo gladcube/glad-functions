@@ -122,4 +122,3 @@ module.exports = new class FlowAssertion
         does-not-throw ->
           250
           |> case$ ( > 300), -> throw new Error
-
