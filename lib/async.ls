@@ -1,5 +1,6 @@
 {args, $_last_arg} = require \./func.ls
 {C} = require \./combinator.ls
+{apply} = require \prelude-ls
 
 module.exports = new class Async
   before: before = (f, g)-->

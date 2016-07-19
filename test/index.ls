@@ -1,6 +1,7 @@
 {catch_} = require \../lib/control.ls
 {$} = require \../lib/func.ls
 require! <[fs colors]>
+{reject, each, obj-to-pairs, is-type, camelize, capitalize} = require \prelude-ls
 
 do main = ->
   err, files <- fs.readdir "#__dirname/../lib"

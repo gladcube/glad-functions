@@ -1,4 +1,5 @@
 {equal, does-not-throw, throws} = require \assert
+{find} = require \prelude-ls
 
 module.exports = new class OptionAssertion
   may: may =

@@ -1,5 +1,6 @@
 {match_} = require \../../lib/str.ls
 {equal} = require \assert
+{at} = require \prelude-ls
 
 module.exports = new class FlowAssertion
   match_: match_ =
