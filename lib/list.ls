@@ -1,5 +1,6 @@
 {get} = require \./obj.ls
 {may} = require \./option.ls
+{find, filter, map, all, at, id} = require \prelude-ls
 
 module.exports = new class List
   find_map: find_map = (f, xs)-->

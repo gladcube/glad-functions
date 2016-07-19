@@ -1,3 +1,5 @@
+{map, obj-to-pairs, concat, pairs-to-obj} = require \prelude-ls
+
 module.exports = new class Obj
   let_: let_ = (x, k, ...a)->
     x.(k).apply x, a

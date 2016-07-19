@@ -1,6 +1,10 @@
 {when_} = require \./flow.ls
 {length} = require \./list.ls
 {C} = require \./combinator.ls
+{
+  at, map, split-at, id, take, map, tail, concat,
+  zip-with, apply, find-index, obj-to-pairs, pairs-to-obj
+} = require \prelude-ls
 
 module.exports = new class Func
   $: $ = (f, x)-->
