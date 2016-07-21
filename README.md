@@ -1,3 +1,6 @@
+# glad-functions
+[![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions)
+
 ## Usage
 
 ### Applicative
