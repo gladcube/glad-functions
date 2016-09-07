@@ -1,5 +1,7 @@
 # glad-functions
 
+glad-functions is the library that extends prelude-ls's functional style programing support.
+
 [![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions) [![Build Status](https://travis-ci.org/gladcube/glad-functions.svg?branch=master)](https://travis-ci.org/gladcube/glad-functions)
 
 ## Usage
