@@ -1,10 +1,15 @@
-# glad-functions [![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions) [![Build Status](https://travis-ci.org/gladcube/glad-functions.svg?branch=master)](https://travis-ci.org/gladcube/glad-functions)
+# glad-functions
+
+[![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions) [![Build Status](https://travis-ci.org/gladcube/glad-functions.svg?branch=master)](https://travis-ci.org/gladcube/glad-functions)
 
 ## Usage
 
 ### Applicative
+
 #### return(return_)
+
 a -> (a -> b)
+
 ```livescript
 return_ \something |> (do) # => 'something'
 ```
@@ -16,7 +21,9 @@ something
 ```
 
 ### Async
+
 #### before
+
 (a -> b) -> (c -> d) -> ((c -> d) -> (a -> b))
 
 Extend the function with the other function.
@@ -34,6 +41,7 @@ Both of the functions should accept the same type and numbers of arguments.(Howe
 ```
 
 #### after
+
 (a -> b) -> (c -> d) -> ((a -> b) -> (c -> d))
 
 Extend the function with the other function.
@@ -49,27 +57,37 @@ Both of the functions should accept the same type and numbers of arguments.
 ```
 
 ### Combinator
+
 #### B
+
 Alias: ```(<<)```
 
 #### C
+
 Alias: ```flip```
 
 #### I
+
 Alias: ```id```
 
 #### K
+
 Alias: ```Applicative.return_```
 
 #### Q
+
 Alias: ```(>>)```
 
 #### Y
+
 Alias: ```fix```
 
 ### Control
+
 #### if(if_), unless(unless_)
+
 Boolean -> (a -> b) -> b?
+
 ```livescript
 some_value = 200
 if_ (some_value > 100), -> console.log \Yeah! # => (Output) 'Yeah!'
@@ -77,6 +95,7 @@ unless_ (some_value > 100), -> console.log \Yeah!  # => (Do Nothing)
 ```
 
 #### try(try_), catch(catch_), finally(finally_)
+
 ```livescript
 do_something = ->
   throw new Error "Some Error!"
@@ -86,13 +105,17 @@ do_something `finally_` -> console.log "Finally do other things." # => (Output) 
 ```
 
 #### throw(throw_)
+
 ```livescript
 throw_ new Error "Some Error!" # => (Error) 'Some Error!'
 ```
 
 ### Flow
+
 #### act
+
 (a -> b) -> a -> a
+
 ```livescript
 [1 to 5]
 |> filter (% 2) >> (is 0)
@@ -104,7 +127,9 @@ throw_ new Error "Some Error!" # => (Error) 'Some Error!'
 ```
 
 #### if(if_), unless(unless_)
+
 Boolean -> (a -> b) -> (a OR b)
+
 ```livescript
 SOME_CONSTANT = 200
 \Yeah!
@@ -118,7 +143,9 @@ SOME_CONSTANT = 200
 ```
 
 #### when(when_), except
+
 (a -> Boolean) -> (a -> b) -> (a OR b)
+
 ```livescript
 [1 to 5]
 |> when_ (all ( < 6)), ( .length) >> console~log # => (Output) 5
@@ -141,7 +168,9 @@ people
 ```
 
 #### then(then_), else(else_)
+
 (a -> b) -> Boolean -> (a OR b)
+
 ```livesctipt
 [1 to 5]
 |> any ( < 5)
@@ -157,8 +186,10 @@ people
 ```
 
 #### case(case_), otherwise(otherwise_)
+
 (a -> Boolean) -> (a -> b) -> (a OR c)  
 c is special unique object
+
 ```livesctipt
 [1 to 3]
 |> case_ (all (< 3)), -> console.log \Yeah! # => (Do Nothing)
@@ -168,8 +199,10 @@ c is special unique object
 ```
 
 #### case$
+
 (a -> Boolean) -> (a -> b) -> a  
 Equivalent to ```(act . when)```
+
 ```livescript
 [1 to 3]
 |> case$ (all (< 3)), -> console.log \Yeah! # => (Do Nothing)
@@ -178,8 +211,11 @@ Equivalent to ```(act . when)```
 ```
 
 ### Func
+
 #### $
+
 (a -> b) -> a -> b
+
 ```livescript
 ( + 5) `$` 4 # => 9
 ```
@@ -194,8 +230,10 @@ Equivalent to ```(act . when)```
 ```
 
 #### $$
+
 [(a -> b), (a -> c), ...] -> a -> [b, c, ...]
 Equivalent to ```flip dist```
+
 ```livescript
 5 |> $$ [(+ 4), (* 4)] # => [ 9, 20 ]
 ```
@@ -207,7 +245,9 @@ Equivalent to ```flip dist```
 ```
 
 #### lazy
+
 ((a, b, c, ...) -> d) -> e -> d
+
 ```livescript
 lazy (+), 5, 5 # => [Function]
 lazy (+), 5, 5 |> (do) # => 10
@@ -218,7 +258,9 @@ set-timeout (lazy console~log, \Yeah!), 3000_ms # => (Output in 3 seconds) 'Yeah
 ```
 
 #### dist
+
 a -> [(a -> b), (a -> c), ...] -> [b, c, ...]
+
 ```livescript
 dist 5, [(+ 4), (* 4)] # => [ 9, 20 ]
 ```
@@ -230,7 +272,9 @@ dist 5, [(+ 4), (* 4)] # => [ 9, 20 ]
 ```
 
 #### arg
+
 Number -> (a, b, c, ...) -> (a OR b OR c OR ...)
+
 ```livescript
 (arg 1) 1, 2, 3 # => 2
 ```
@@ -240,7 +284,9 @@ express!.get \./, (arg 1) >> let_ \render, \index # second argument of callback 
 ```
 
 #### args
+
 (a, b, c, ...) -> [a, b, c, ...]
+
 ```livescript
 args 1, 2, 3 # => [ 1, 2, 3 ]
 ```
@@ -250,7 +296,9 @@ express!.get \./, args >> (++ \foo) >> cb # useful when add argument
 ```
 
 #### withl
+
 (a -> b) -> [b, a]
+
 ```livescript
 5 |> withl ( + 10) # => [ 15, 5 ]
 ```
@@ -262,83 +310,107 @@ express!.get \./, args >> (++ \foo) >> cb # useful when add argument
 ```
 
 #### withr
+
 (a -> b) -> [a, b]
+
 ```livescript
 5 |> withr ( + 10) # => [ 5, 15]
 ```
 
 #### $_at
+
 Number -> (a -> b) -> [a] -> [a OR b]
+
 ```livescript
 [1, 2, 3]
 |> $_at 2, (* 10) # => [ 1, 2, 30 ]
 ```
 
 #### $_zip
+
 [(a -> b), (c -> d), ...] -> [a, b, ...] -> [c, d, ...]
+
 ```livescript
 [1, 2, 3]
 |> $_zip [(* 10), (- 2), (+ 7)] # => [ 10, 0, 10 ]
 ```
 
 #### $_head
+
 a -> [b] -> [c]
+
 ```livescript
 [1, 2, 3]
 |> $_head (* 10) # => [10, 2, 3]
 ```
 
 #### $_last
+
 a -> [b] -> [c]
+
 ```livescript
 [1, 2, 3]
 |> $_last (* 10) # => [1, 2, 30]
 ```
 
 #### $_arg
+
 Number -> (a -> b) -> (c -> d) -> (e -> f)
+
 ```livescript
 $_arg 1, (+ 5), (-)
 |> apply _, [10, 20] # => -15
 ```
 
 #### $_head_arg
+
 (a -> b) -> (c -> d) -> (e -> f)
+
 ```livescript
 $_head_arg (+ 100), (-)
 |> apply _, [10, 20] # => 90
 ```
 
 #### $_last_arg
+
 (a -> b) -> (c -> d) -> (e -> f)
+
 ```livescript
 $_last_arg  (+ 100), (-)
 |> apply _, [10, 20] # => -110
 ```
 
 #### $_args
+
 (a -> b) -> (c -> d) -> (e -> f)
+
 ```livescript
 $_args (+ 5), (*)
 |> apply _, [10, 20] # => 375
 ```
 
 #### $$_args
+
 [(a -> b), ...] -> (c -> d) -> (e -> f)
+
 ```livescript
 $$_args [(+ 100), (+ 5)], (*)
 |> apply _, [10, 20]# => 2750
 ```
 
 #### $_when
+
 Function -> Function -> [a] -> [a]
+
 ```livescript
 [10, 20, 30]
 |> $_when (> 20), (* 30) # => [10, 20, 900]
 ```
 
 #### $_find
+
 Function -> Function -> [a] -> [a]
+
 ```livescript
 <[foo bar foobar bar foo lorem ]>
 |> $_find (is \bar), ( + \barbar)
@@ -346,6 +418,7 @@ Function -> Function -> [a] -> [a]
 ```
 
 #### $_filter
+
 Function -> Function -> [a] -> [a]
 
 Equivalent to
@@ -359,7 +432,9 @@ $_when
 ```
 
 #### $_pairs
+
 Function -> Object -> Object
+
 ```livescript
 { ks : 10 , ms : 2 }
 |> $_pairs  map map (+ \5) # => { ks5: '105', ms5: '25' }
@@ -369,14 +444,18 @@ Function -> Object -> Object
 ```
 
 #### $_key
+
 String -> (a -> b) -> c -> d
+
 ```livescript
 { ks : 10 , ms : 2}
 |> $_key \ms  (+ 5) # => { ks: 10, ms: 7 }
 ```
 
 #### need
+
 Number -> Function -> Function
+
 ```livescript
 (+)
 |> need 2
@@ -385,8 +464,11 @@ Number -> Function -> Function
 ```
 
 ### List
+
 #### find_map
+
 (a -> b) -> [a] -> b
+
 ```livescript
 <[foo bar]>
 |> find_map match_ /a(r)/
@@ -394,7 +476,9 @@ Number -> Function -> Function
 ```
 
 #### filter_map
+
 (a -> b) -> [a] -> [b]
+
 ```livescript
 <[foo bar]>
 |> filter_map match_ /a(r)/
@@ -402,18 +486,23 @@ Number -> Function -> Function
 ```
 
 #### length
+
 [a] -> Number
+
 ```livescript
 [1 to 3] |> length # => 3
 ```
 
 #### pick
+
 [Number] -> [a] -> [a]
+
 ``` livesctipt
 [1 to 40] |> pick [4, 23, 13, 5, 1]  # => [ 5, 24, 14, 6, 2 ]
 ```
 
 [Number] -> [a] -> [a]
+
 ``` livescript
 some_function = (cb)->
   cb \err, \data, \other_data
@@ -421,39 +510,52 @@ some_function (args >> (pick [2, 1]) >> join " ") # => "other_data data"
 ```
 
 #### list
+
 (a, b, c, ...) -> [a, b, c, ...]
+
 ``` livescript
 list 1, 2, 3, 4 # => [1, 2, 3, 4]
 ```
 
 #### range
+
 a -> b -> [a]
+
 ```livescript
 range 4, 100 # => [4, 5, ... 99]
 ```
 
 #### none
+
 (a → Boolean) → [a] → Boolean
+
 ```livescript
   <[foo bar foobar]> |> none (match_ /^foo/) # => false
 ```
+
 ```livescript
   <[foo bar foobar]> |> none (match_ /^lorem/) # => true
 ```
+
 ```livescript
   [] |> none (match_ /^lorem/) # => true
 ```
 
 
 ### Obj
+
 #### let(let_)
+
 (a, String, b, c, ...) -> d
+
 ```livescript
 let_ console, \log, \Yeah! # => (Output) 'Yeah!'
 ```
 
 #### get
+
 (String) -> a -> b
+
 ```livescript
 human = name: \tarou
 human |> get \name # => 'tarou'
@@ -465,7 +567,9 @@ human = name: \tarou, age: 25 weight: 60
 ```
 
 #### set
+
 (String) -> a -> b -> a
+
 ```livescript
 human = {}
 human
@@ -474,21 +578,27 @@ human
 ```
 
 #### delete(delete_)
+
 (String) -> a -> b
+
 ```livescript
 (foo: \bar)
 |> act delete_ \foo # => {}
 ```
 
 #### set_$
+
 String -> (a -> b) -> c -> d
+
 ```livescript
 { foo: 4, bar: 5}
 |> act set_$ \bar, (+ 8) # => { foo: 4, bar: 13 }
 ```
 
 #### new_
+
 a -> b ... -> c
+
 ```livescript
 (class A
   (num) ->
@@ -502,7 +612,9 @@ a -> b ... -> c
 ```
 
 #### call
+
 String -> a ... -> b -> c
+
 ```livescript
 call \plus_w, 3, 8 ,(plus_w: ( + ) >> ( * 2 )) # => 22
 ```
@@ -510,8 +622,10 @@ call \plus_w, 3, 8 ,(plus_w: ( + ) >> ( * 2 )) # => 22
 ### Option
 
 #### may
+
 (a -> b) -> a? -> b?  
-Equivalent to ```when (?)```  
+Equivalent to ```when (?)```
+
 ```livescript
 people =
   * name: \tarou
@@ -523,14 +637,19 @@ people
 ```
 
 ### Str
+
 #### match(match_)
+
 (String OR RegExp) -> String -> [String]?
+
 ```livescript
 \foo |> match_ /oo/ |> at 0 # => 'oo'
 ```
 
 ## Other
+
 ### Module Exports Priority
+
 1. Func
 2. Combinator
 3. Applicative
@@ -541,3 +660,4 @@ people
 8. List
 9. Str
 10. Obj
+
