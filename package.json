@@ -8,6 +8,7 @@
   },
   "author": "",
   "license": "ISC",
+  "homepage": "https://github.com/gladcube/glad-functions",
   "dependencies": {
     "livescript": "^1.5.0",
     "prelude-ls": "^1.1.2"
