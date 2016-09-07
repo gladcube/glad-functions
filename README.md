@@ -1,6 +1,4 @@
-# glad-functions
-[![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions)
-[![Build Status](https://travis-ci.org/gladcube/glad-functions.svg?branch=master)](https://travis-ci.org/gladcube/glad-functions)
+# glad-functions [![npm version](https://badge.fury.io/js/glad-functions.svg)](https://badge.fury.io/js/glad-functions) [![Build Status](https://travis-ci.org/gladcube/glad-functions.svg?branch=master)](https://travis-ci.org/gladcube/glad-functions)
 
 ## Usage
 
