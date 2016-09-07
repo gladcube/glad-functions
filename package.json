@@ -1,6 +1,6 @@
 {
   "name": "glad-functions",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "homepage": "https://github.com/gladcube/glad-functions",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gladcube/glad-functions"
+  },
   "dependencies": {
     "livescript": "^1.5.0",
     "prelude-ls": "^1.1.2"
