@@ -480,6 +480,7 @@ String -> (a -> b) -> c -> d
 ]
 |> filter $_all [( .job is \director), ( .age >= 30)]
 # => [{name: \Jone, job: \director, age: 35}]
+```
 
 #### need
 
