@@ -454,6 +454,33 @@ String -> (a -> b) -> c -> d
 |> $_key \ms  (+ 5) # => { ks: 10, ms: 7 }
 ```
 
+#### $_any
+
+[Function] -> a -> Boolean
+
+```livescript
+[
+  * name: \Bob, job: \engineer, age: 28
+  * name: \Jone, job: \director, age: 35
+  * name: \Allen, job: \designer, age: 30
+]
+|> filter $_any [( .job is \engineer), ( .age <= 30)]
+# => [{name: \Bob, job: \engineer, age: 28}, {name: \Allen, job: \designer, age: 30}]
+```
+
+#### $_all
+
+[Function] -> a -> Boolean
+
+```livescript
+[
+  * name: \Bob, job: \engineer, age: 28
+  * name: \Jone, job: \director, age: 35
+  * name: \Allen, job: \designer, age: 30
+]
+|> filter $_all [( .job is \director), ( .age >= 30)]
+# => [{name: \Jone, job: \director, age: 35}]
+
 #### need
 
 Number -> Function -> Function
