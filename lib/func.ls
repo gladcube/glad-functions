@@ -3,7 +3,8 @@
 {C} = require \./combinator.ls
 {
   at, map, split-at, id, take, map, tail, concat,
-  zip-with, apply, find-index, obj-to-pairs, pairs-to-obj
+  zip-with, apply, find-index, obj-to-pairs, pairs-to-obj,
+  any, all
 } = require \prelude-ls
 
 module.exports = new class Func
@@ -45,6 +46,8 @@ module.exports = new class Func
     $_pairs (
       $_when (at 0) >> (is k), ($_at 1, f)
     ), o
+  $_any: $_any = (fs, x)--> any (x |> ), fs
+  $_all: $_all = (fs, x)--> all (x |> ), fs
   lazy: lazy = (x, ...y)->
     -> apply x, y
   dist: dist = C $$

@@ -87,6 +87,14 @@ module.exports = new class FuncAssertion
     [10, 20, 30]
     |> $_filter (> 10), (* 30)
     |> deep-equal _, [ 10, 600, 900 ]
+  $_any: $_any = ($_any)->
+    [{age: 28, job: \engineer}, {age: 35, job: \designer}]
+    |> filter $_any [(.age > 30), (.job is \engineer)]
+    |> deep-equal _, [{age: 28, job: \engineer}, {age: 35, job: \designer}]
+  $_all: $_all = ($_all)->
+    [{age: 28, job: \engineer}, {age: 35, job: \designer}]
+    |> filter $_all [(.age < 30), (.job is \engineer)]
+    |> deep-equal _, [{age: 28, job: \engineer}]
   need: need =
     (need)->
       a = (x, y)--> x + y + 5
