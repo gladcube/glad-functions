@@ -1,13 +1,13 @@
-require! \./applicative.ls
-require! \./async.ls
-require! \./combinator.ls
-require! \./control.ls
-require! \./flow.ls
-require! \./func.ls
-require! \./list.ls
-require! \./obj.ls
-require! \./option.ls
-require! \./str.ls
+require! \./applicative
+require! \./async
+require! \./combinator
+require! \./control
+require! \./flow
+require! \./func
+require! \./list
+require! \./obj
+require! \./option
+require! \./str
 
 module.exports = new class GladFunctions
   Applicative: applicative

@@ -1,5 +1,5 @@
-{get} = require \./obj.ls
-{may} = require \./option.ls
+{get} = require \./obj
+{may} = require \./option
 {find, filter, map, all, at, id} = require \prelude-ls
 
 module.exports = new class List

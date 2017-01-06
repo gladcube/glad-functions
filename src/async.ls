@@ -1,5 +1,5 @@
-{args, $_last_arg} = require \./func.ls
-{C} = require \./combinator.ls
+{args, $_last_arg} = require \./func
+{C} = require \./combinator
 {apply} = require \prelude-ls
 
 module.exports = new class Async

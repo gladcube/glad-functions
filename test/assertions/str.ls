@@ -1,4 +1,4 @@
-{match_} = require \../../lib/str.ls
+{match_} = require \../../src/str.ls
 {equal} = require \assert
 {at} = require \prelude-ls
 

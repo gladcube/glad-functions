@@ -1,4 +1,4 @@
-{return_} = require \./applicative.ls
+{return_} = require \./applicative
 
 module.exports = new class Flow
   act: act = (f, x)-->

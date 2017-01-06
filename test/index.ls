@@ -1,14 +1,14 @@
-{catch_} = require \../lib/control.ls
-{$} = require \../lib/func.ls
+{catch_} = require \../src/control.ls
+{$} = require \../src/func.ls
 require! <[fs colors]>
 {reject, each, obj-to-pairs, is-type, camelize, capitalize} = require \prelude-ls
 
 do main = ->
-  err, files <- fs.readdir "#__dirname/../lib"
+  err, files <- fs.readdir "#__dirname/../src"
   files
   |> reject ( is \index.ls)
   |> each (file)->
-    (require "#__dirname/../lib/#file")
+    (require "#__dirname/../src/#file")
     |> obj-to-pairs
     |> each ([key, func])->
       run "#{module_name file}.#key", (require "#__dirname/assertions/#file").(key), func

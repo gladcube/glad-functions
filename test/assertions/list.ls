@@ -1,6 +1,6 @@
-{length: _length} = require \../../lib/list.ls
-{match_} = require \../../lib/str.ls
-{args} = require \../../lib/func.ls
+{length: _length} = require \../../src/list.ls
+{match_} = require \../../src/str.ls
+{args} = require \../../src/func.ls
 {equal, deep-equal} = require \assert
 {at, join} = require \prelude-ls
 

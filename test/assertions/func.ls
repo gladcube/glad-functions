@@ -1,5 +1,5 @@
-{length} = require \../../lib/list.ls
-{act} = require \../../lib/flow.ls
+{length} = require \../../src/list.ls
+{act} = require \../../src/flow.ls
 {deep-equal, equal, throws} = require \assert
 {map, apply, filter, head} = require \prelude-ls
 

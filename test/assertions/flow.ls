@@ -1,4 +1,4 @@
-{case: _case} = require \../../lib/flow.ls
+{case: _case} = require \../../src/flow.ls
 {equal, not-equal, throws, does-not-throw} = require \assert
 
 module.exports = new class FlowAssertion

@@ -1,6 +1,6 @@
-{when_} = require \./flow.ls
-{length} = require \./list.ls
-{C} = require \./combinator.ls
+{when_} = require \./flow
+{length} = require \./list
+{C} = require \./combinator
 {
   at, map, split-at, id, take, map, tail, concat,
   zip-with, apply, find-index, obj-to-pairs, pairs-to-obj,

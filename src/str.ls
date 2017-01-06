@@ -1,4 +1,4 @@
-{let_} = require \./obj.ls
+{let_} = require \./obj
 {flip} = require \prelude-ls
 
 module.exports = new class Str

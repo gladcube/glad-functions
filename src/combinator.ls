@@ -1,4 +1,4 @@
-{return_} = require \./applicative.ls
+{return_} = require \./applicative
 {flip, id, fix} = require \prelude-ls
 
 module.exports = new class Combinator

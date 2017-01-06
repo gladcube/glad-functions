@@ -1,5 +1,5 @@
-{act} = require \../../lib/flow.ls
-{get: _get, let: _let} = require \../../lib/obj.ls
+{act} = require \../../src/flow.ls
+{get: _get, let: _let} = require \../../src/obj.ls
 {equal, deep-equal} = require \assert
 
 module.exports = new class ObjAssertion

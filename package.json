@@ -1,9 +1,10 @@
 {
   "name": "glad-functions",
-  "version": "0.0.30",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "lsc bin/build.ls",
     "test": "node test/index.js"
   },
   "author": "",
